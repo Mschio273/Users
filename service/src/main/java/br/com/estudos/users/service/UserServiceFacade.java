@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 
 import static br.com.estudos.users.exception.ErrorConstants.ID_NAO_ENCONTRADO;
 import static br.com.estudos.users.mapper.MapperToUserWithAdress.mapAddress;
-import static br.com.estudos.users.mapper.UserServiceMapperToEntity.toUserEntityService;
 
 
 @AllArgsConstructor
