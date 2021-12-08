@@ -1,6 +1,6 @@
 package br.com.estudos.users.controller;
 
-import br.com.estudos.users.mapper.ControllerMapper;
+import br.com.estudos.users.mapper.ControllerMapperResponse;
 import br.com.estudos.users.model.UserControllerRequest;
 import br.com.estudos.users.model.UserControllerResponse;
 import br.com.estudos.users.model.UserServiceRequest;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.estudos.users.mapper.ControllerMapper.toUserControllerRequest;
-import static br.com.estudos.users.mapper.ControllerMapper.toUserControllerResponse;
+import static br.com.estudos.users.mapper.ControllerMapperRequest.toUserControllerRequest;
+import static br.com.estudos.users.mapper.ControllerMapperResponse.toUserControllerResponse;
 
 @AllArgsConstructor
 @Component
@@ -23,7 +23,7 @@ public class UserControllerFacade {
 
     public List<UserControllerResponse> findAll() {
         return serviceFacade.findAll().stream()
-                .map(ControllerMapper::toUserControllerResponse)
+                .map(ControllerMapperResponse::toUserControllerResponse)
                 .collect(Collectors.toList());
     }
 

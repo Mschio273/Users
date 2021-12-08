@@ -1,5 +1,6 @@
 package br.com.estudos.users.service;
 
+import br.com.estudos.users.exception.NotFoundException;
 import br.com.estudos.users.integration.CepIntegration;
 import br.com.estudos.users.model.UserServiceRequest;
 import br.com.estudos.users.model.UserServiceResponse;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static br.com.estudos.users.exception.ErrorConstants.ID_NAO_ENCONTRADO;
 import static br.com.estudos.users.mapper.MapperToUserWithAdress.mapAddress;
+import static br.com.estudos.users.mapper.UserServiceMapperToEntity.toUserEntityService;
 
 
 @AllArgsConstructor
@@ -28,6 +31,9 @@ public class UserServiceFacade {
     }
 
     public UserServiceResponse save(UserServiceRequest user) {
+        if (user.getAddress() != null) {
+            return userService.save(toUserEntityService(user));
+        }
         return userService.save(mapAddress(user, cepIntegration.findByCep(user.getCep())));
     }
 
@@ -35,7 +41,8 @@ public class UserServiceFacade {
         return Stream.of(userService.findById(id))
                 .map(address -> mapAddress(user, cepIntegration.findByCep(user.getCep())))
                 .map(address -> userService.update(user.getId(), address))
-                .findAny().orElseThrow();
+                .findAny()
+                .orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO));
     }
 
     public void deleteById(String id) {

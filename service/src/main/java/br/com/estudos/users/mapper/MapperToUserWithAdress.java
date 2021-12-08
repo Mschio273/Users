@@ -12,24 +12,24 @@ import org.mapstruct.factory.Mappers;
 public interface MapperToUserWithAdress {
 
     static UserEntity mapAddress(UserServiceRequest user, Address address) {
-        return Mappers.getMapper(MapperToUserWithAdress.class).toCepServiceResponse(user);
+        return Mappers.getMapper(MapperToUserWithAdress.class).toCepServiceResponse(user, address);
     }
 
     @Mapping(target = "address", ignore = true)
-    UserEntity toCepServiceResponse(UserServiceRequest user);
+    UserEntity toCepServiceResponse(UserServiceRequest user, Address address);
 
     @AfterMapping
-    default void map(@MappingTarget UserServiceRequest.UserServiceRequestBuilder user, Address cep) {
-        Address address = Address.builder()
-                .cep(cep.getCep())
-                .bairro(cep.getBairro())
-                .complemento(cep.getComplemento())
-                .ibge(cep.getIbge())
-                .localidade(cep.getLocalidade())
-                .logradouro(cep.getLogradouro())
-                .uf(cep.getUf())
+    default void mapAddress(@MappingTarget UserEntity.UserEntityBuilder user, Address address) {
+        Address addressUser = Address.builder()
+                .cep(address.getCep())
+                .bairro(address.getBairro())
+                .complemento(address.getComplemento())
+                .ibge(address.getIbge())
+                .localidade(address.getLocalidade())
+                .logradouro(address.getLogradouro())
+                .uf(address.getUf())
                 .build();
 
-        user.address(address);
+        user.address(addressUser);
     }
 }
