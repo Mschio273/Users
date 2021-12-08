@@ -31,9 +31,6 @@ public class UserServiceFacade {
     }
 
     public UserServiceResponse save(UserServiceRequest user) {
-        if (user.getAddress() != null) {
-            return userService.save(toUserEntityService(user));
-        }
         return userService.save(mapAddress(user, cepIntegration.findByCep(user.getCep())));
     }
 
@@ -41,7 +38,7 @@ public class UserServiceFacade {
         return Stream.of(userService.findById(id))
                 .map(address -> mapAddress(user, cepIntegration.findByCep(user.getCep())))
                 .map(address -> userService.update(user.getId(), address))
-                .findAny()
+                .findFirst()
                 .orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO));
     }
 
