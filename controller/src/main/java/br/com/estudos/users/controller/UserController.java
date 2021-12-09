@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -38,14 +39,14 @@ public class UserController {
     @PostMapping
     @ResponseStatus(CREATED)
    @SaveCode
-    public UserControllerResponse save(@RequestBody UserControllerRequest user) {
+    public UserControllerResponse save(@RequestBody @Valid UserControllerRequest user) {
         return controllerFacade.save(user);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(OK)
     @UpdateCode
-    public UserControllerResponse update(@PathVariable String id, @RequestBody UserControllerRequest user) {
+    public UserControllerResponse update(@PathVariable String id, @RequestBody @Valid UserControllerRequest user) {
         return controllerFacade.update(id, user);
     }
 

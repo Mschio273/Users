@@ -2,12 +2,12 @@ package br.com.estudos.users.exception;
 
 public class ErrorConstants {
 
-    public static final String BASE_DE_DADOS_VAZIA = "Base de dados vazia";
-    public static final String ID_NAO_ENCONTRADO = "Id não encontrado";
-    public static final String SERVIDOR_INDISPONIVEL = "Servidor indisponivel";
-    public static final String USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
-    public static final String ERRO_DE_ENTRADA_SAIDA = "Erro de entrada/saída";
-    public static final String ERRO_INESPERADO = "Erro inesperado";
-    public static final String NECESSARIO_USER_PARA_SALVAR = "É necessário ter um usuário para salvar";
-    public static final String DADOS_INVALIDOS = "Dados inválidos";
+    public static final String EMPTY_DATABASE = "Empty database";
+    public static final String ID_NOT_FOUND = "Id not found";
+    public static final String SERVER_OUT_OF_SERVICE = "Server out of service";
+    public static final String USER_NOT_FOUND = "User not found";
+    public static final String INPUT_OUTPUT_ERROR = "Input/output error";
+    public static final String UNEXPECTED_ERROR = "Unexpected error";
+    public static final String USER_REQUIRED_TO_SAVE = "User required to save";
+    public static final String INVALID_DATA = "Invalid data";
 }

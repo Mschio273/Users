@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.estudos.users.exception.ErrorConstants.ID_NAO_ENCONTRADO;
+import static br.com.estudos.users.exception.ErrorConstants.ID_NOT_FOUND;
 import static br.com.estudos.users.mapper.UserServiceMapperToResponse.toUserServiceResponse;
 
 @Service
@@ -28,7 +28,7 @@ public class UserService {
 
     public UserServiceResponse findById(String id) {
         return toUserServiceResponse(userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO)));
+                .orElseThrow(() -> new NotFoundException(ID_NOT_FOUND)));
     }
 
     public UserServiceResponse save(UserEntity user) {
@@ -36,13 +36,13 @@ public class UserService {
     }
 
     public UserServiceResponse update(String id, UserEntity user) {
-        user.setId(userRepository.findById(id).orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO)).getId());
+        user.setId(userRepository.findById(id).orElseThrow(() -> new NotFoundException(ID_NOT_FOUND)).getId());
         return toUserServiceResponse(userRepository.save(user));
     }
 
     public void deleteById(String id) {
         userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO));
+                .orElseThrow(() -> new NotFoundException(ID_NOT_FOUND));
         userRepository.deleteById(id);
     }
 }
