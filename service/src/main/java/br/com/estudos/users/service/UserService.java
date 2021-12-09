@@ -35,8 +35,8 @@ public class UserService {
         return toUserServiceResponse(userRepository.save(user));
     }
 
-    //todo dando save
     public UserServiceResponse update(String id, UserEntity user) {
+        user.setId(userRepository.findById(id).orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO)).getId());
         return toUserServiceResponse(userRepository.save(user));
     }
 

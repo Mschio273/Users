@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 import static br.com.estudos.users.exception.ErrorConstants.ID_NAO_ENCONTRADO;
 import static br.com.estudos.users.mapper.MapperToUserWithAdress.mapAddress;
@@ -34,10 +34,8 @@ public class UserServiceFacade {
     }
 
     public UserServiceResponse update(String id, UserServiceRequest user) {
-        return Stream.of(userService.findById(id))
-                .map(address -> mapAddress(user, cepIntegration.findByCep(user.getCep())))
-                .map(address -> userService.update(user.getId(), address))
-                .findFirst()
+        return Optional.of(userService.findById(id))
+                .map(x -> userService.update(x.getId(), mapAddress(user, cepIntegration.findByCep(user.getCep()))))
                 .orElseThrow(() -> new NotFoundException(ID_NAO_ENCONTRADO));
     }
 
