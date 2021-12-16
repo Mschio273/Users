@@ -13,7 +13,6 @@ import java.util.Optional;
 import static br.com.estudos.users.exception.ErrorConstants.ID_NOT_FOUND;
 import static br.com.estudos.users.mapper.MapperToUserWithAdress.mapAddress;
 
-
 @AllArgsConstructor
 @Component
 public class UserServiceFacade {
