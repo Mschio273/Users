@@ -1,0 +1,6 @@
+# CONFIG SERVER
+
+spring:
+  cloud:
+    config:
+          uri: https://github.com/Mschio273/SpringCloudConfigServer
