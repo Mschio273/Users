@@ -33,9 +33,6 @@ allprojects {
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.2'
         compileOnly('io.springfox:springfox-swagger2:2.9.2')
         compileOnly('io.springfox:springfox-swagger-ui:2.9.2')
-        testImplementation('org.springframework.boot:spring-boot-starter-test:2.6.1') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
         implementation 'org.mapstruct:mapstruct:1.4.2.Final'
         annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     }
