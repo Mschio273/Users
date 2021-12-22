@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/api/v1/user")
 @Api(value = "API REST de cadastro de usuário")
+//todo crossorigin
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class UserController {

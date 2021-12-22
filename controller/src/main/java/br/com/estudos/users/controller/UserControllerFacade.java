@@ -13,10 +13,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static br.com.estudos.users.mapper.ControllerMapperRequest.toUserControllerRequest;
+import static br.com.estudos.users.mapper.ControllerMapperRequestWithId.toUserControllerRequestWithId;
 import static br.com.estudos.users.mapper.ControllerMapperResponse.toUserControllerResponse;
 
 @AllArgsConstructor
 @Component
+//todo diferença component service
 public class UserControllerFacade {
 
     private final UserServiceFacade serviceFacade;
@@ -32,6 +34,8 @@ public class UserControllerFacade {
         return toUserControllerResponse(userId);
     }
 
+    //todo criar testes facade, controller, service
+    //todo criar outro toUserControllerRequest
     public UserControllerResponse save(UserControllerRequest userControllerRequest) {
         UserServiceRequest userServiceRequest = toUserControllerRequest(userControllerRequest);
         UserServiceResponse userSave = serviceFacade.save(userServiceRequest);
@@ -39,7 +43,7 @@ public class UserControllerFacade {
     }
 
     public UserControllerResponse update(String id, UserControllerRequest userControllerRequest) {
-        UserServiceRequest userServiceRequest = toUserControllerRequest(userControllerRequest);
+        UserServiceRequest userServiceRequest = toUserControllerRequestWithId(userControllerRequest, id);
         UserServiceResponse userUpdate = serviceFacade.update(id, userServiceRequest);
         return toUserControllerResponse(userUpdate);
     }

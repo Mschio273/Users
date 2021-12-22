@@ -36,7 +36,6 @@ public class UserService {
     }
 
     public UserServiceResponse update(String id, UserEntity user) {
-        user.setId(id);
         return toUserServiceResponse(userRepository.save(user));
     }
 
