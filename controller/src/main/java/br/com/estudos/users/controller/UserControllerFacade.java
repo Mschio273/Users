@@ -4,7 +4,6 @@ import br.com.estudos.users.mapper.ControllerMapperResponse;
 import br.com.estudos.users.model.UserControllerRequest;
 import br.com.estudos.users.model.UserControllerResponse;
 import br.com.estudos.users.model.UserServiceRequest;
-import br.com.estudos.users.model.UserServiceResponse;
 import br.com.estudos.users.service.UserServiceFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,21 +28,18 @@ public class UserControllerFacade {
     }
 
     public UserControllerResponse findById(String id) {
-        UserServiceResponse userId = serviceFacade.findById(id);
-        return toUserControllerResponse(userId);
+        return toUserControllerResponse(serviceFacade.findById(id));
     }
 
     //todo criar testes facade, controller, service
     public UserControllerResponse save(UserControllerRequest userControllerRequest) {
         UserServiceRequest userServiceRequest = toUserControllerRequest(userControllerRequest);
-        UserServiceResponse userSave = serviceFacade.save(userServiceRequest);
-        return toUserControllerResponse(userSave);
+        return toUserControllerResponse(serviceFacade.save(userServiceRequest));
     }
 
     public UserControllerResponse update(String id, UserControllerRequest userControllerRequest) {
         UserServiceRequest userServiceRequest = toUserControllerRequestWithId(userControllerRequest, id);
-        UserServiceResponse userUpdate = serviceFacade.update(id, userServiceRequest);
-        return toUserControllerResponse(userUpdate);
+        return toUserControllerResponse(serviceFacade.update(id, userServiceRequest));
     }
 
     public void delete(String id) {
