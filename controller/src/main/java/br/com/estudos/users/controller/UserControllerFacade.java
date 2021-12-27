@@ -7,7 +7,7 @@ import br.com.estudos.users.model.UserServiceRequest;
 import br.com.estudos.users.model.UserServiceResponse;
 import br.com.estudos.users.service.UserServiceFacade;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +17,7 @@ import static br.com.estudos.users.mapper.ControllerMapperRequestWithId.toUserCo
 import static br.com.estudos.users.mapper.ControllerMapperResponse.toUserControllerResponse;
 
 @AllArgsConstructor
-@Component
-//todo diferença component service
+@Service
 public class UserControllerFacade {
 
     private final UserServiceFacade serviceFacade;
@@ -35,7 +34,6 @@ public class UserControllerFacade {
     }
 
     //todo criar testes facade, controller, service
-    //todo criar outro toUserControllerRequest
     public UserControllerResponse save(UserControllerRequest userControllerRequest) {
         UserServiceRequest userServiceRequest = toUserControllerRequest(userControllerRequest);
         UserServiceResponse userSave = serviceFacade.save(userServiceRequest);

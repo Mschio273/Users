@@ -4,14 +4,14 @@ import br.com.estudos.users.integration.CepIntegration;
 import br.com.estudos.users.model.UserServiceRequest;
 import br.com.estudos.users.model.UserServiceResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static br.com.estudos.users.mapper.MapperToUserWithAdress.mapAddress;
 
 @AllArgsConstructor
-@Component
+@Service
 public class UserServiceFacade {
 
     final UserService userService;
